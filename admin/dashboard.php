@@ -91,17 +91,26 @@ $registrations = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?= date('d M Y H:i', strtotime($registration['registered_at'])); ?>
                         </td>
 
+                        
                         <td>
                             <a href="view-registration.php?id=<?= (int) $registration['id']; ?>">
                                 View
                             </a>
+
+                            <form action="delete-registration.php" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this registration?');">
+
+                                <input
+                                    type="hidden"
+                                    name="id"
+                                    value="<?= (int) $registration['id']; ?>"
+                                >
+
+                                <button type="submit">Delete</button>
+
+                            </form>
                         </td>
 
-                        <td>
-                            <a href="delete-registration.php?id=<?= (int) $registration['id']; ?>">
-                                Delete
-                            </a>
-                        </td>
                     </tr>
 
                 <?php endforeach; ?>
