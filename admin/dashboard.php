@@ -5,13 +5,11 @@ session_start();
 
 require_once "../config/database.php";
 
-// Protect the dashboard
 if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// Fetch all registrations with their event details
 $sql = "SELECT
             registrations.id,
             registrations.name,
@@ -96,6 +94,12 @@ $registrations = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td>
                             <a href="view-registration.php?id=<?= (int) $registration['id']; ?>">
                                 View
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="delete-registration.php?id=<?= (int) $registration['id']; ?>">
+                                Delete
                             </a>
                         </td>
                     </tr>
