@@ -1,0 +1,1 @@
+-- Add the event registration tables and seed data here.
