@@ -12,16 +12,13 @@ $stmt->execute();
 
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$pageTitle = "Upcoming Events";
+
+include "includes/header.php";
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upcoming Events</title>
-</head>
-<body>
+<main>
 
     <h1>Upcoming Events</h1>
 
@@ -29,7 +26,7 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <?php foreach ($events as $event): ?>
 
-            <div class="event">
+            <div class="event-card">
 
                 <h2>
                     <?= htmlspecialchars($event['name'], ENT_QUOTES, 'UTF-8'); ?>
@@ -50,8 +47,6 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             </div>
 
-            <hr>
-
         <?php endforeach; ?>
 
     <?php else: ?>
@@ -60,5 +55,6 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php endif; ?>
 
-</body>
-</html>
+</main>
+
+<?php include "includes/footer.php"; ?>

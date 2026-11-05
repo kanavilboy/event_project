@@ -20,70 +20,63 @@ $event = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$event) {
     die("Event not found or registration is unavailable.");
 }
-
+include "includes/header.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Registration</title>
-</head>
-<body>
 
+<main>
     <h1>Event Registration</h1>
 
-    <h2>
-        <?= htmlspecialchars($event['name'], ENT_QUOTES, 'UTF-8'); ?>
-    </h2>
+        <h2>
+            <?= htmlspecialchars($event['name'], ENT_QUOTES, 'UTF-8'); ?>
+        </h2>
 
-    <p>
-        Date:
-        <?= date('d M Y', strtotime($event['event_date'])); ?>
-    </p>
+        <p>
+            Date:
+            <?= date('d M Y', strtotime($event['event_date'])); ?>
+        </p>
 
-    <p>
-        <?= htmlspecialchars($event['description'], ENT_QUOTES, 'UTF-8'); ?>
-    </p>
+        <p>
+            <?= htmlspecialchars($event['description'], ENT_QUOTES, 'UTF-8'); ?>
+        </p>
 
-    <hr>
+        <hr>
 
-    <form action="process-registration.php" method="POST">
+        <form action="process-registration.php" method="POST">
 
-        <input
-            type="hidden"
-            name="event_id"
-            value="<?= (int) $event['id']; ?>"
-        >
-
-        <div>
-            <label for="name">Your Name:</label>
             <input
-                type="text"
-                id="name"
-                name="name"
-                required
+                type="hidden"
+                name="event_id"
+                value="<?= (int) $event['id']; ?>"
             >
-        </div>
 
-        <br>
+            <div>
+                <label for="name">Your Name:</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                >
+            </div>
 
-        <div>
-            <label for="email">Email Address:</label>
-            <input
-                type="email"
-                id="email"
-                name="email"
-                required
-            >
-        </div>
+            <br>
 
-        <br>
+            <div>
+                <label for="email">Email Address:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                >
+            </div>
 
-        <button type="submit">Submit Registration</button>
+            <br>
 
-    </form>
+            <button type="submit">Submit Registration</button>
 
-</body>
-</html>
+        </form>
+</main>
+
+<?php include "includes/footer.php"; ?>

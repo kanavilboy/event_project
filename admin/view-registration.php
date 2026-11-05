@@ -46,47 +46,53 @@ if (!$registration) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Details</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
 
-    <h1>Registration Details</h1>
+        <h2>Registration Details</h2>
 
-    <p>
-        <strong>Registration ID:</strong>
-        <?= (int) $registration['id']; ?>
-    </p>
+        <p>
+            <strong>Registration ID:</strong>
+            <?= (int) $registration['id']; ?>
+        </p>
 
-    <p>
-        <strong>Name:</strong>
-        <?= htmlspecialchars($registration['name'], ENT_QUOTES, 'UTF-8'); ?>
-    </p>
+        <p>
+            <strong>Name:</strong>
+            <?= htmlspecialchars($registration['name'], ENT_QUOTES, 'UTF-8'); ?>
+        </p>
 
-    <p>
-        <strong>Email:</strong>
-        <?= htmlspecialchars($registration['email'], ENT_QUOTES, 'UTF-8'); ?>
-    </p>
+        <p>
+            <strong>Email:</strong>
+            <?= htmlspecialchars($registration['email'], ENT_QUOTES, 'UTF-8'); ?>
+        </p>
 
-    <p>
-        <strong>Event:</strong>
-        <?= htmlspecialchars($registration['event_name'], ENT_QUOTES, 'UTF-8'); ?>
-    </p>
+        <p>
+            <strong>Event:</strong>
+            <?= htmlspecialchars($registration['event_name'], ENT_QUOTES, 'UTF-8'); ?>
+        </p>
 
-    <p>
-        <strong>Event Date:</strong>
-        <?= date('d M Y', strtotime($registration['event_date'])); ?>
-    </p>
+        <p>
+            <strong>Event Date:</strong>
+            <?= date('d M Y', strtotime($registration['event_date'])); ?>
+        </p>
 
-    <p>
-        <strong>Description:</strong>
-        <?= htmlspecialchars($registration['description'], ENT_QUOTES, 'UTF-8'); ?>
-    </p>
+        <p>
+            <strong>Description:</strong>
+            <?= htmlspecialchars($registration['description'], ENT_QUOTES, 'UTF-8'); ?>
+        </p>
 
-    <p>
-        <strong>Date Registered:</strong>
-        <?= date('d M Y H:i', strtotime($registration['registered_at'])); ?>
-    </p>
+        <p>
+            <strong>Date Registered:</strong>
+            <?= date('d M Y H:i', strtotime($registration['registered_at'])); ?>
+        </p>
 
     <a href="dashboard.php">Back to Dashboard</a>
+
+    </div>
 
 </body>
 </html>

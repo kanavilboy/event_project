@@ -5,6 +5,7 @@ session_start();
 
 require_once "../config/database.php";
 
+// Redirect logged-in admin
 if (isset($_SESSION['admin_id'])) {
     header("Location: dashboard.php");
     exit;
@@ -12,6 +13,7 @@ if (isset($_SESSION['admin_id'])) {
 
 $error = "";
 
+// Handle login form
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $username = trim($_POST['username'] ?? '');
@@ -48,29 +50,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Page title and header
+$pageTitle = "Admin Login";
+$basePath = "../";
+
+include "../includes/header.php";
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-</head>
-<body>
+<main>
 
     <h1>Admin Login</h1>
 
     <?php if ($error !== ''): ?>
-        <p style="color: red;">
+
+        <p class="error">
             <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
         </p>
+
     <?php endif; ?>
 
     <form method="POST" action="">
 
         <div>
             <label for="username">Username:</label>
+
             <input
                 type="text"
                 id="username"
@@ -79,10 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             >
         </div>
 
-        <br>
-
         <div>
             <label for="password">Password:</label>
+
             <input
                 type="password"
                 id="password"
@@ -91,11 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             >
         </div>
 
-        <br>
-
         <button type="submit">Login</button>
 
     </form>
 
-</body>
-</html>
+</main>
+
+<?php include "../includes/footer.php"; ?>

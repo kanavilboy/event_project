@@ -29,51 +29,45 @@ if (!$registration) {
 
 unset($_SESSION['registration_id']);
 
+include "includes/header.php";
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Successful</title>
-</head>
-<body>
-
+<main>
     <h1>Registration Successful!</h1>
 
-    <p>
-        Thank you,
-        <strong>
+        <p>
+            Thank you,
+            <strong>
+                <?= htmlspecialchars($registration['name'], ENT_QUOTES, 'UTF-8'); ?>
+            </strong>!
+        </p>
+
+        <p>Your registration has been completed successfully.</p>
+
+        <h2>Registration Details</h2>
+
+        <p>
+            <strong>Event:</strong>
+            <?= htmlspecialchars($registration['event_name'], ENT_QUOTES, 'UTF-8'); ?>
+        </p>
+
+        <p>
+            <strong>Date:</strong>
+            <?= date('d M Y', strtotime($registration['event_date'])); ?>
+        </p>
+
+        <p>
+            <strong>Name:</strong>
             <?= htmlspecialchars($registration['name'], ENT_QUOTES, 'UTF-8'); ?>
-        </strong>!
-    </p>
+        </p>
 
-    <p>Your registration has been completed successfully.</p>
+        <p>
+            <strong>Email:</strong>
+            <?= htmlspecialchars($registration['email'], ENT_QUOTES, 'UTF-8'); ?>
+        </p>
 
-    <h2>Registration Details</h2>
+        <a href="index.php">Back to Home</a>
+</main>
 
-    <p>
-        <strong>Event:</strong>
-        <?= htmlspecialchars($registration['event_name'], ENT_QUOTES, 'UTF-8'); ?>
-    </p>
-
-    <p>
-        <strong>Date:</strong>
-        <?= date('d M Y', strtotime($registration['event_date'])); ?>
-    </p>
-
-    <p>
-        <strong>Name:</strong>
-        <?= htmlspecialchars($registration['name'], ENT_QUOTES, 'UTF-8'); ?>
-    </p>
-
-    <p>
-        <strong>Email:</strong>
-        <?= htmlspecialchars($registration['email'], ENT_QUOTES, 'UTF-8'); ?>
-    </p>
-
-    <a href="index.php">Back to Home</a>
-
-</body>
-</html>
+<?php include "includes/footer.php"; ?>
